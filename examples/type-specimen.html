@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Type Specimen</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #141b24;
+      --muted: #4e5d70;
+      --paper: #f2f4f7;
+      --surface: #ffffff;
+      --line: #ccd4df;
+      --accent: #234e76;
+      --accent-soft: #e1ebf4;
+      --ui: "Segoe UI", system-ui, sans-serif;
+      --mono: Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.45 var(--ui); }
+    button, input { font: inherit; }
+    button { color: inherit; cursor: pointer; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .shell { width: min(100% - 64px, 1160px); margin-inline: auto; }
+    header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 19px 0; border-bottom: 1px solid var(--line); }
+    h1 { margin: 0; font: 600 17px/1.2 var(--ui); letter-spacing: -.02em; }
+    h1::before { content: ''; display: inline-block; margin-right: 10px; width: 10px; height: 13px; background: var(--accent); vertical-align: -1px; }
+    .reset { background: transparent; border: 1px solid var(--line); border-radius: 4px; padding: 8px 13px; }
+    .reset:hover { background: var(--surface); }
+    main { display: grid; grid-template-columns: 215px minmax(0, 1fr); gap: 30px; padding: 30px 0; }
+    aside { min-width: 0; }
+    .control-title { margin: 0 0 12px; color: var(--muted); font-size: 13px; font-weight: 650; }
+    .font-list { display: grid; gap: 5px; }
+    .font { text-align: left; display: grid; gap: 3px; background: transparent; border: 1px solid transparent; border-radius: 4px; padding: 10px 12px; }
+    .font strong { font-weight: 650; }
+    .font small { color: var(--muted); font-size: 12px; }
+    .font[aria-pressed="true"] { background: var(--accent-soft); border-color: #83a2bf; box-shadow: inset 3px 0 var(--accent); }
+    .font:hover { border-color: #7193b2; }
+    .settings { border-top: 1px solid var(--line); margin-top: 20px; padding-top: 17px; display: grid; gap: 9px; }
+    .settings label { font-size: 13px; font-weight: 650; }
+    .size-label { display: flex; justify-content: space-between; align-items: baseline; }
+    output { color: var(--accent); font: 13px var(--mono); }
+    input[type="range"] { width: 100%; margin: 0; accent-color: var(--accent); }
+    input[type="text"] { min-width: 0; width: 100%; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 8px; }
+    .preview { border: 1px solid var(--line); border-radius: 5px; min-width: 0; background: var(--surface); }
+    .preview-bar { min-height: 54px; padding: 12px 26px; display: flex; justify-content: space-between; gap: 12px; align-items: center; border-bottom: 1px solid var(--line); }
+    .preview-bar h2 { margin: 0; font-size: 14px; font-weight: 650; }
+    .face { color: var(--muted); font: 12px/1.35 var(--mono); text-align: right; }
+    .specimen { padding: 30px clamp(16px, 4.3vw, 62px) 36px; font-family: var(--family, "Segoe UI", sans-serif); }
+    .headline { font-size: calc(var(--size, 68) * 1px); line-height: 1.08; letter-spacing: -.045em; margin: 0; max-inline-size: 17ch; min-block-size: 2.16em; overflow-wrap: anywhere; }
+    .copy { font-size: 18px; line-height: 1.55; margin: 20px 0 25px; max-inline-size: 43ch; }
+    .glyphs { border-top: 1px solid var(--line); padding-top: 15px; color: var(--muted); }
+    .glyphs p { margin: 3px 0; overflow-wrap: anywhere; }
+    .glyphs .control-title { margin-bottom: 8px; font-family: var(--ui); }
+    .characters { font-size: clamp(16px, 2.2vw, 24px); letter-spacing: .07em; }
+
+    @media (max-width: 620px) {
+      .shell { width: calc(100% - 32px); }
+      header { padding: 14px 0; }
+      main { grid-template-columns: 1fr; gap: 19px; padding: 20px 0; }
+      .font-list { grid-template-columns: 1fr 1fr; }
+      .font { border-color: var(--line); }
+      .settings { grid-template-columns: 1fr; margin-top: 15px; padding-top: 13px; }
+      .preview-bar { min-height: 48px; padding-inline: 16px; }
+      .specimen { padding-block: 20px; }
+      .copy { font-size: 16px; margin-block: 13px 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <h1>Type Specimen</h1>
+      <button class="reset" type="button">Reset sample</button>
+    </header>
+    <main>
+      <aside aria-label="Specimen controls">
+        <p class="control-title" id="font-heading">Typeface</p>
+        <div class="font-list" role="group" aria-labelledby="font-heading">
+          <button class="font" type="button" data-family="Segoe UI, sans-serif" aria-pressed="true"><strong>Segoe UI</strong><small>Humanist sans</small></button>
+          <button class="font" type="button" data-family="Georgia, serif" aria-pressed="false"><strong>Georgia</strong><small>Book serif</small></button>
+          <button class="font" type="button" data-family="Arial, sans-serif" aria-pressed="false"><strong>Arial</strong><small>Sans serif</small></button>
+          <button class="font" type="button" data-family="Consolas, monospace" aria-pressed="false"><strong>Consolas</strong><small>Monospace</small></button>
+        </div>
+        <div class="settings">
+          <div class="size-label"><label for="size">Display size</label><output for="size" id="size-value">68 px</output></div>
+          <input id="size" type="range" min="24" max="108" value="68">
+          <label for="sample">Sample text</label>
+          <input id="sample" type="text" value="The shape of a sentence.">
+        </div>
+      </aside>
+      <section class="preview" aria-labelledby="preview-title">
+        <div class="preview-bar">
+          <h2 id="preview-title">Specimen preview</h2>
+          <span class="face" id="face" aria-live="polite">Segoe UI · Regular</span>
+        </div>
+        <div class="specimen">
+          <p class="headline" id="headline">The shape of a sentence.</p>
+          <p class="copy">Read a few lines at a time. Notice how the rhythm of the letters changes as a sentence takes shape on the page.</p>
+          <div class="glyphs">
+            <p class="control-title">Character sample</p>
+            <p class="characters" lang="en">Aa Bb Cc Dd Ee Ff Gg</p>
+            <p class="characters" lang="en">0123456789 &amp; ? !</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script>
+    const fonts = [...document.querySelectorAll('.font')];
+    const preview = document.querySelector('.specimen');
+    const size = document.querySelector('#size');
+    const sample = document.querySelector('#sample');
+    const initialSize = matchMedia('(max-width: 620px)').matches ? '38' : size.defaultValue;
+
+    function selectFont(font) {
+      fonts.forEach(option => option.setAttribute('aria-pressed', String(option === font)));
+      preview.style.setProperty('--family', font.dataset.family);
+      document.querySelector('#face').textContent = `${font.querySelector('strong').textContent} · Regular`;
+    }
+
+    function updateSample() {
+      preview.style.setProperty('--size', size.value);
+      document.querySelector('#size-value').value = `${size.value} px`;
+      document.querySelector('#headline').textContent = sample.value.trim() || sample.defaultValue;
+    }
+
+    fonts.forEach(font => font.addEventListener('click', () => selectFont(font)));
+    size.addEventListener('input', updateSample);
+    sample.addEventListener('input', updateSample);
+    function resetSample() {
+      size.value = initialSize;
+      sample.value = sample.defaultValue;
+      selectFont(fonts[0]);
+      updateSample();
+    }
+
+    document.querySelector('.reset').addEventListener('click', resetSample);
+    resetSample();
+  </script>
+</body>
+</html>
